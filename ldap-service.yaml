@@ -4,6 +4,7 @@ metadata:
   labels:
     app: ldap
   name: ldap-service
+  namespace: alauda-system
 spec:
   ports:
     - port: 389
