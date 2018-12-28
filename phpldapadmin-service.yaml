@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: phpldapadmin
   name: phpldapadmin
+  namespace: alauda-system
 spec:
   ports:
   - name: "8080"
@@ -15,5 +16,26 @@ spec:
     targetPort: 80
   selector:
     io.kompose.service: phpldapadmin
-status:
-  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: phpldapadmin
+  name: phpldapadmin-Nodeport
+  namespace: alauda-system
+spec:
+  ports:
+    - name: '8080'
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+  selector:
+    io.kompose.service: phpldapadmin
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
