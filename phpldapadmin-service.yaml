@@ -26,7 +26,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: phpldapadmin
-  name: phpldapadmin-Nodeport
+  name: phpldapadminnodeport
   namespace: alauda-system
 spec:
   ports:
